@@ -27,21 +27,26 @@ export function EnvelopeFrontOpen({
       h="100%"
       style={{ perspective: '1400px' }}
     >
+      {/* Envelope interior liner */}
       <Box
         position="absolute"
         inset={0}
         borderRadius="3px"
-        boxShadow={envelopeTheme.shadow}
+        boxShadow={`
+          ${envelopeTheme.shadow},
+          inset 0 2px 4px rgba(0,0,0,0.1)
+        `}
         overflow="hidden"
         bg={envelopeTheme.liner}
         backgroundImage="repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0 2px, transparent 2px 4px), radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%)"
       />
 
+      {/* Invitation card with smooth reveal */}
       {showCard && (
         <MotionBox
           position="absolute"
           left="50%"
-          bottom="18px"
+          bottom="8px"
           zIndex={isOpen ? 30 : 15}
           initial={{ x: '-50%', y: 28, scale: 0.9, opacity: 0 }}
           animate={{
@@ -58,6 +63,7 @@ export function EnvelopeFrontOpen({
         </MotionBox>
       )}
 
+      {/* Envelope pocket with enhanced depth */}
       <Box
         position="absolute"
         bottom={0}
@@ -67,10 +73,15 @@ export function EnvelopeFrontOpen({
         zIndex={20}
         clipPath="polygon(0 100%, 0 12%, 50% 58%, 100% 12%, 100% 100%)"
         {...paperStyle(envelopeTheme.pocket)}
-        boxShadow={`inset 0 8px 16px ${envelopeTheme.pocketShadow}`}
+        boxShadow={`
+          inset 0 8px 16px ${envelopeTheme.pocketShadow},
+          inset 0 2px 4px rgba(0,0,0,0.12),
+          inset 0 -1px 2px rgba(0,0,0,0.05)
+        `}
         borderBottomRadius="3px"
       />
 
+      {/* Left pocket edge with shadow */}
       <Box
         position="absolute"
         bottom={0}
@@ -79,10 +90,10 @@ export function EnvelopeFrontOpen({
         h="55%"
         zIndex={19}
         clipPath="polygon(0 100%, 0 0, 100% 55%)"
-        bg={envelopeTheme.exteriorDark}
-        opacity={0.55}
+        bgGradient="linear(to-r, rgba(0,0,0,0.15), transparent 80%)"
       />
 
+      {/* Right pocket edge with shadow */}
       <Box
         position="absolute"
         bottom={0}
@@ -91,10 +102,10 @@ export function EnvelopeFrontOpen({
         h="55%"
         zIndex={19}
         clipPath="polygon(100% 100%, 100% 0, 0 55%)"
-        bg={envelopeTheme.exteriorDark}
-        opacity={0.55}
+        bgGradient="linear(to-l, rgba(0,0,0,0.15), transparent 80%)"
       />
 
+      {/* Animated envelope flap with enhanced 3D */}
       <MotionBox
         position="absolute"
         top={0}
@@ -115,20 +126,27 @@ export function EnvelopeFrontOpen({
           }
         }}
       >
+        {/* Flap exterior */}
         <Box
           w="100%"
           h="100%"
           clipPath="polygon(0 0, 100% 0, 50% 100%)"
           {...paperStyle(envelopeTheme.exteriorLight)}
-          boxShadow="inset 0 -3px 10px rgba(20, 46, 77, 0.18)"
+          boxShadow={`
+            inset 0 -3px 10px rgba(20, 46, 77, 0.18),
+            inset 0 1px 2px rgba(255,255,255,0.25)
+          `}
         />
+        
+        {/* Flap interior (back face) */}
         <Box
           position="absolute"
           inset={0}
           clipPath="polygon(0 0, 100% 0, 50% 100%)"
           bg={envelopeTheme.liner}
-          opacity={0.85}
+          opacity={0.9}
           style={{ transform: 'rotateX(180deg)', backfaceVisibility: 'hidden' }}
+          boxShadow="inset 0 2px 6px rgba(0,0,0,0.1)"
         />
       </MotionBox>
     </Box>
