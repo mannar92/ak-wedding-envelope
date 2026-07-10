@@ -47,6 +47,11 @@ function HintText({ children }: { children: string }) {
       fontWeight="500"
       userSelect="none"
       pointerEvents="none"
+      bg="rgba(255, 255, 255, 0.9)"
+      px={3}
+      py={1.5}
+      borderRadius="3px"
+      boxShadow="0 2px 8px rgba(20, 46, 77, 0.15)"
     >
       {children}
     </Text>
