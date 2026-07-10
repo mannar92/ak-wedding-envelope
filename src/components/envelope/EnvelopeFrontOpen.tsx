@@ -46,7 +46,7 @@ export function EnvelopeFrontOpen({
         <MotionBox
           position="absolute"
           left="50%"
-          bottom="18px"
+          bottom="8px"
           zIndex={isOpen ? 30 : 15}
           initial={{ x: '-50%', y: 28, scale: 0.9, opacity: 0 }}
           animate={{
