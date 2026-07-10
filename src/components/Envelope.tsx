@@ -106,88 +106,90 @@ export function Envelope() {
       py={8}
       bg={envelopeTheme.pageBg}
       position="relative"
-      overflow="hidden"
+      overflow="visible"
+      flexDirection="column"
+      justifyContent="center"
+      gap={6}
     >
       <Box
         position="relative"
         w={ENVELOPE_WIDTH}
-        h={{ base: '500px', sm: '520px' }}
+        h={ENVELOPE_HEIGHT}
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="flex-end"
+        justifyContent="center"
       >
-        <Box position="relative" w={ENVELOPE_WIDTH} h={ENVELOPE_HEIGHT}>
-          {/* Flat back — no 3D transforms, keeps text crisp */}
-          {showFlatBack && (
-            <Box
+        {/* Flat back — no 3D transforms, keeps text crisp */}
+        {showFlatBack && (
+          <Box
+            position="relative"
+            w="100%"
+            h="100%"
+            cursor="pointer"
+            onClick={interact}
+            role="button"
+            tabIndex={0}
+            aria-label="Turn over wedding invitation envelope"
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault()
+                interact()
+              }
+            }}
+          >
+            <EnvelopeBack />
+          </Box>
+        )}
+
+        {/* 3D flip — only active during the flip animation */}
+        {show3DFlip && (
+          <Box
+            position="absolute"
+            inset={0}
+            style={{ perspective: '1600px' }}
+          >
+            <MotionBox
               position="relative"
               w="100%"
               h="100%"
-              cursor="pointer"
-              onClick={interact}
-              role="button"
-              tabIndex={0}
-              aria-label="Turn over wedding invitation envelope"
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  event.preventDefault()
-                  interact()
-                }
-              }}
+              style={{ transformStyle: 'preserve-3d' }}
+              initial={{ rotateY: 0 }}
+              animate={{ rotateY: flipRotation }}
+              transition={flipTransition}
+              onAnimationComplete={handleFlipComplete}
             >
-              <EnvelopeBack />
-            </Box>
-          )}
-
-          {/* 3D flip — only active during the flip animation */}
-          {show3DFlip && (
-            <Box
-              position="absolute"
-              inset={0}
-              style={{ perspective: '1600px' }}
-            >
-              <MotionBox
-                position="relative"
-                w="100%"
-                h="100%"
-                style={{ transformStyle: 'preserve-3d' }}
-                initial={{ rotateY: 0 }}
-                animate={{ rotateY: flipRotation }}
-                transition={flipTransition}
-                onAnimationComplete={handleFlipComplete}
-              >
-                <FlipFace rotateY={0}>
-                  <EnvelopeBack />
-                </FlipFace>
-                <FlipFace rotateY={180}>
-                  <EnvelopeFrontSealed />
-                </FlipFace>
-              </MotionBox>
-            </Box>
-          )}
-
-          {/* Flat front — no 3D transforms after flip completes */}
-          {showFlatFront && (
-            <Box position="relative" w="100%" h="100%">
-              {showOpenFront ? (
-                <EnvelopeFrontOpen
-                  isOpening={isOpening}
-                  isOpen={isOpen}
-                  onOpenComplete={onOpenComplete}
-                />
-              ) : (
+              <FlipFace rotateY={0}>
+                <EnvelopeBack />
+              </FlipFace>
+              <FlipFace rotateY={180}>
                 <EnvelopeFrontSealed />
-              )}
-            </Box>
-          )}
-        </Box>
+              </FlipFace>
+            </MotionBox>
+          </Box>
+        )}
 
-        <Box position="absolute" bottom="8px" h="20px">
-          {isBack && <HintText>Tap to turn over</HintText>}
-          {isFrontSealed && <HintText>Opening…</HintText>}
-          {isOpen && <HintText>Tap invitation to RSVP</HintText>}
-        </Box>
+        {/* Flat front — no 3D transforms after flip completes */}
+        {showFlatFront && (
+          <Box position="relative" w="100%" h="100%">
+            {showOpenFront ? (
+              <EnvelopeFrontOpen
+                isOpening={isOpening}
+                isOpen={isOpen}
+                onOpenComplete={onOpenComplete}
+              />
+            ) : (
+              <EnvelopeFrontSealed />
+            )}
+          </Box>
+        )}
+      </Box>
+
+      {/* Hint text moved outside and below envelope */}
+      <Box h="20px">
+        {isBack && <HintText>Tap to turn over</HintText>}
+        {isFrontSealed && <HintText>Opening…</HintText>}
+        {isOpen && <HintText>Tap invitation to RSVP</HintText>}
       </Box>
     </Center>
   )
