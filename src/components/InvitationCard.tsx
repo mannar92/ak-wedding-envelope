@@ -11,7 +11,7 @@ export function InvitationCard({ onRsvpClick }: InvitationCardProps) {
     <VStack
       as="button"
       onClick={onRsvpClick}
-      w={{ base: '385px', sm: '385px' }}
+      w={{ base: '365px', sm: '385px' }}
       spacing={0}
       bg="transparent"
       borderRadius="4px"
@@ -42,32 +42,6 @@ export function InvitationCard({ onRsvpClick }: InvitationCardProps) {
           display="block"
           pointerEvents="none"
         />
-      </Box>
-
-      {/* Status label below image */}
-      <Box
-        w="100%"
-        bg={weddingTheme.colors.background}
-        borderRadius="0 0 4px 4px"
-        border="1px solid"
-        borderColor={weddingTheme.colors.borderSubtle}
-        borderTop="none"
-        px={4}
-        py={3}
-        textAlign="center"
-        transition="all 0.2s ease"
-        _groupHover={{ boxShadow: '0 4px 12px rgba(20, 46, 77, 0.2)' }}
-      >
-        <Text
-          fontFamily={weddingTheme.fonts.serif}
-          fontSize={weddingTheme.fontSizes.hint}
-          color={weddingTheme.colors.ink}
-          fontWeight="500"
-          letterSpacing={weddingTheme.letterSpacing.body}
-          userSelect="none"
-        >
-          Open RSVP website
-        </Text>
       </Box>
     </VStack>
   )
