@@ -1,0 +1,28 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  -webkit-tap-highlight-color: transparent;
+  background-color: var(--wedding-bg);
+  color: var(--wedding-ink);
+  font-family: var(--wedding-font-serif);
+}
+
+#root {
+  min-height: 100dvh;
+  width: 100%;
+}
+
+:root {
+  --wedding-bg: #f4f4ef;
+  --wedding-ink: #183860;
+  --wedding-font-serif: 'Cormorant Garamond', Georgia, serif;
+  --wedding-font-script: 'Pinyon Script', cursive;
+}
