@@ -6,13 +6,12 @@ type InvitationCardProps = {
   onRsvpClick: () => void
 }
 
-export function InvitationCard({ onRsvpClick }: InvitationCardProps) {
+export function ({ onRsvpClick }: InvitationCardProps) {
   return (
     <VStack
       as="button"
       onClick={onRsvpClick}
       w={{ base: '365px', sm: '385px' }}
-      spacing={0}
       bg="transparent"
       borderRadius="4px"
       cursor="pointer"

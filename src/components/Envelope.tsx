@@ -186,7 +186,7 @@ export function Envelope() {
       </Box>
 
       {/* Hint text moved outside and below envelope */}
-      <Box h="20px">
+      <Box h="0px">
         {isBack && <HintText>Tap to turn over</HintText>}
         {isFrontSealed && <HintText>Opening…</HintText>}
         {isOpen && <HintText>Tap invitation to RSVP</HintText>}
