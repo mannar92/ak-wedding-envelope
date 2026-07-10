@@ -11,21 +11,25 @@ export function paperStyle(color: string): Pick<BoxProps, 'bg' | 'backgroundImag
 export const ENVELOPE_WIDTH = { base: '290px', sm: '310px' }
 export const ENVELOPE_HEIGHT = '210px'
 
+// Enhanced flip transition with smoother easing curve
 export const flipTransition = {
-  duration: 1.75,
-  ease: [0.4, 0, 0.2, 1] as const,
+  duration: 1.6,
+  ease: [0.34, 1.56, 0.64, 1] as const, // Cubic bezier with slight overshoot for elegance
 }
 
+// Refined flap opening with more natural motion
 export const flapTransition = {
   type: 'spring' as const,
-  stiffness: 100,
-  damping: 18,
-  mass: 0.9,
+  stiffness: 120,
+  damping: 22,
+  mass: 0.8,
 }
 
+// Enhanced card reveal with better timing and feel
 export const cardTransition = {
   type: 'spring' as const,
-  stiffness: 80,
-  damping: 16,
-  delay: 0.45,
+  stiffness: 100,
+  damping: 20,
+  delay: 0.5,
+  mass: 0.9,
 }
