@@ -1,6 +1,7 @@
 import { Box, Image, Text } from '@chakra-ui/react'
 import { invitationImage02 } from '../lib'
 import { envelopeTheme, weddingTheme } from '../lib/theme'
+import { WeddingCountdown } from './WeddingCountdown'
 
 type InvitationCardProps = {
   onRsvpClick: () => void
@@ -46,27 +47,30 @@ export function InvitationCard({
       </Box>
 
       {showRsvpHint && (
-        <Box
-          bg={envelopeTheme.pageBg}
-          px={3}
-          py={1.5}
-          borderRadius="3px"
-          border="1px solid"
-          borderColor={envelopeTheme.exterior}
-          boxShadow="0 2px 8px rgba(24, 56, 96, 0.22), inset 0 1px 1px rgba(24, 56, 96, 0.12)"
-        >
-          <Text
-            fontFamily={weddingTheme.fonts.script}
-            fontSize={weddingTheme.fontSizes.scriptSm}
-            color={envelopeTheme.exterior}
-            textAlign="center"
-            lineHeight="1.2"
-            userSelect="none"
-            pointerEvents="none"
-            textShadow="0 1px 2px rgba(24, 56, 96, 0.22)"
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box
+            bg={envelopeTheme.pageBg}
+            px={3}
+            py={1.5}
+            borderRadius="3px"
+            border="1px solid"
+            borderColor={envelopeTheme.exterior}
+            boxShadow="0 2px 8px rgba(24, 56, 96, 0.22), inset 0 1px 1px rgba(24, 56, 96, 0.12)"
           >
-            Πατήστε την πρόσκληση για την ιστοσελίδα μας
-          </Text>
+            <Text
+              fontFamily={weddingTheme.fonts.script}
+              fontSize={weddingTheme.fontSizes.scriptSm}
+              color={envelopeTheme.exterior}
+              textAlign="center"
+              lineHeight="1.2"
+              userSelect="none"
+              pointerEvents="none"
+              textShadow="0 1px 2px rgba(24, 56, 96, 0.22)"
+            >
+              Πατήστε την πρόσκληση για την ιστοσελίδα μας
+            </Text>
+          </Box>
+          <WeddingCountdown />
         </Box>
       )}
     </Box>

@@ -35,6 +35,7 @@ export const weddingTheme = {
     scriptHero: { base: '1.50rem', sm: '1.8rem' },
     scriptMd: { base: '1.55rem', sm: '1.7rem' },
     scriptSm: { base: '1.00rem', sm: '1.2rem' },
+    scriptXSm: { base: '0.75rem', sm: '1.0rem' },
     body: { base: '1rem', sm: '1.05rem' },
     hint: { base: '0.82rem', sm: '0.88rem' },
     caption: '0.78rem',
