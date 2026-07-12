@@ -36,28 +36,6 @@ function FlipFace({
   )
 }
 
-function HintText({ children }: { children: string }) {
-  return (
-    <Text
-      fontFamily={weddingTheme.fonts.serif}
-      fontSize={weddingTheme.fontSizes.hint}
-      color={envelopeTheme.hintText}
-      letterSpacing={weddingTheme.letterSpacing.hint}
-      textTransform="uppercase"
-      fontWeight="500"
-      userSelect="none"
-      pointerEvents="none"
-      bg="rgba(255, 255, 255, 0.9)"
-      px={3}
-      py={1.5}
-      borderRadius="3px"
-      boxShadow="0 2px 8px rgba(20, 46, 77, 0.15)"
-    >
-      {children}
-    </Text>
-  )
-}
-
 export function Envelope() {
   const {
     phase,
@@ -186,10 +164,31 @@ export function Envelope() {
       </Box>
 
       {/* Hint text moved outside and below envelope */}
-      <Box h="20px">
-        {isBack && <HintText>Tap to turn over</HintText>}
-        {isFrontSealed && <HintText>Opening…</HintText>}
-        {isOpen && <HintText>Tap invitation to RSVP</HintText>}
+      <Box display="flex" justifyContent="center" alignItems="center" minH="20px">
+        {isBack && (
+          <Box
+            bg={envelopeTheme.pageBg}
+            px={3}
+            py={1.5}
+            borderRadius="3px"
+            border="1px solid"
+            borderColor={envelopeTheme.exterior}
+            boxShadow="0 2px 8px rgba(24, 56, 96, 0.22), inset 0 1px 1px rgba(24, 56, 96, 0.12)"
+          >
+            <Text
+              fontFamily={weddingTheme.fonts.script}
+              fontSize={weddingTheme.fontSizes.scriptSm}
+              color={envelopeTheme.exterior}
+              textAlign="center"
+              lineHeight="1.2"
+              userSelect="none"
+              pointerEvents="none"
+              textShadow="0 1px 2px rgba(24, 56, 96, 0.22)"
+            >
+              Πατήστε για Ανοιγμα
+            </Text>
+          </Box>
+        )}
       </Box>
     </Center>
   )

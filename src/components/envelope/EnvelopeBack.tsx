@@ -31,11 +31,11 @@ export function EnvelopeBack() {
           fontSize={weddingTheme.fontSizes.scriptHero}
           color="#FFFFFF"
           textAlign="center"
-          lineHeight="1.2"
+          lineHeight="4.5"
           userSelect="none"
           textShadow="0 2px 4px rgba(20, 46, 77, 0.3)"
         >
-          You are Invited
+          Σας προσκαλούμε
         </Text>
       </Center>
     </Box>

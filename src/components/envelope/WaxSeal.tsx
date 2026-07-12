@@ -1,5 +1,5 @@
 import { Center, Image } from '@chakra-ui/react'
-import { envelopeTheme, weddingTheme } from '../../lib/theme'
+import { weddingTheme } from '../../lib/theme'
 import waxSeal from '../../lib/images/was_seal.png'
 
 export function WaxSeal({ size = '48px' }: { size?: string }) {

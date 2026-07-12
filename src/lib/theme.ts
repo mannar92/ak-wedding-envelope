@@ -1,3 +1,5 @@
+
+
 export const weddingTheme = {
   colors: {
     /** Sampled from invitation paper (light pixels avg) */
@@ -22,7 +24,7 @@ export const weddingTheme = {
 
   fonts: {
     /** Names & decorative lines on the invitation */
-    script: "'Pinyon Script', cursive",
+    script: "'LXGW Marker Gothic', cursive",
     /** Body copy, date, venue, hints */
     serif: "'Cormorant Garamond', Georgia, serif",
     /** Monogram-style headings */
@@ -30,8 +32,9 @@ export const weddingTheme = {
   },
 
   fontSizes: {
-    scriptHero: { base: '2.35rem', sm: '2.6rem' },
+    scriptHero: { base: '1.50rem', sm: '1.8rem' },
     scriptMd: { base: '1.55rem', sm: '1.7rem' },
+    scriptSm: { base: '1.00rem', sm: '1.2rem' },
     body: { base: '1rem', sm: '1.05rem' },
     hint: { base: '0.82rem', sm: '0.88rem' },
     caption: '0.78rem',

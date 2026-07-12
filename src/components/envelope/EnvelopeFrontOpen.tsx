@@ -45,19 +45,17 @@ export function EnvelopeFrontOpen({
       {showCard && (
         <MotionBox
           position="absolute"
-          left="50%"
-          bottom="8px"
+          inset={0}
           zIndex={isOpen ? 30 : 15}
-          initial={{ x: '-50%', y: 28, scale: 0.9, opacity: 0 }}
-          animate={{
-            x: '-50%',
-            y: isOpen ? -0 : -56,
-            scale: 1,
-            opacity: 1,
-          }}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          initial={{ y: 28, scale: 0.9, opacity: 0 }}
+          animate={{ y: isOpen ? 0 : -56, scale: 1, opacity: 1 }}
           transition={cardTransition}
         >
           <InvitationCard
+            showRsvpHint={isOpen}
             onRsvpClick={() => window.open(RSVP_URL, '_blank', 'noopener,noreferrer')}
           />
         </MotionBox>
@@ -70,7 +68,7 @@ export function EnvelopeFrontOpen({
         left={0}
         right={0}
         h="62%"
-        zIndex={20}
+        zIndex={0}
         clipPath="polygon(0 100%, 0 12%, 50% 58%, 100% 12%, 100% 100%)"
         {...paperStyle(envelopeTheme.pocket)}
         boxShadow={`
@@ -88,7 +86,7 @@ export function EnvelopeFrontOpen({
         left={0}
         w="50%"
         h="55%"
-        zIndex={19}
+        zIndex={0}
         clipPath="polygon(0 100%, 0 0, 100% 55%)"
         bgGradient="linear(to-r, rgba(0,0,0,0.15), transparent 80%)"
       />
@@ -100,7 +98,7 @@ export function EnvelopeFrontOpen({
         right={0}
         w="50%"
         h="55%"
-        zIndex={19}
+        zIndex={0}
         clipPath="polygon(100% 100%, 100% 0, 0 55%)"
         bgGradient="linear(to-l, rgba(0,0,0,0.15), transparent 80%)"
       />
@@ -112,7 +110,7 @@ export function EnvelopeFrontOpen({
         left={0}
         right={0}
         h="54%"
-        zIndex={25}
+        zIndex={0}
         style={{
           transformOrigin: 'top center',
           transformStyle: 'preserve-3d',
@@ -136,17 +134,6 @@ export function EnvelopeFrontOpen({
             inset 0 -3px 10px rgba(20, 46, 77, 0.18),
             inset 0 1px 2px rgba(255,255,255,0.25)
           `}
-        />
-        
-        {/* Flap interior (back face) */}
-        <Box
-          position="absolute"
-          inset={0}
-          clipPath="polygon(0 0, 100% 0, 50% 100%)"
-          bg={envelopeTheme.liner}
-          opacity={0.9}
-          style={{ transform: 'rotateX(180deg)', backfaceVisibility: 'hidden' }}
-          boxShadow="inset 0 2px 6px rgba(0,0,0,0.1)"
         />
       </MotionBox>
     </Box>
