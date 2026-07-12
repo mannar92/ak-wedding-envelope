@@ -1,5 +1,5 @@
 import { Box, Image } from '@chakra-ui/react'
-import { invitationImage } from '../lib'
+import { invitationImage02 } from '../lib'
 import { weddingTheme } from '../lib/theme'
 
 type InvitationCardProps = {
@@ -30,7 +30,7 @@ export function InvitationCard({ onRsvpClick }: InvitationCardProps) {
       aria-label="Open RSVP website"
     >
       <Image
-        src={invitationImage}
+        src={invitationImage02}
         alt="Wedding invitation"
         w="100%"
         h="100%"

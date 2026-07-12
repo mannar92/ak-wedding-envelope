@@ -1,5 +1,6 @@
-import { Center, Text } from '@chakra-ui/react'
+import { Center, Image } from '@chakra-ui/react'
 import { envelopeTheme, weddingTheme } from '../../lib/theme'
+import waxSeal from '../../lib/images/was_seal.png'
 
 export function WaxSeal({ size = '48px' }: { size?: string }) {
   return (
@@ -7,44 +8,40 @@ export function WaxSeal({ size = '48px' }: { size?: string }) {
       w={size}
       h={size}
       borderRadius="full"
-      bgGradient={`radial(circle at 35% 30%, ${weddingTheme.colors.backgroundLight} 0%, ${weddingTheme.colors.backgroundMuted} 35%, #B8B4AC 70%, #A89E96 100%)`}
+      p="2px"
+      bg="rgba(20, 46, 77, 0.4)"
       boxShadow={`
-        0 6px 16px rgba(20, 46, 77, 0.4),
-        0 2px 4px rgba(20, 46, 77, 0.5),
-        inset 0 1px 2px rgba(255,255,255,0.6),
-        inset 0 -2px 4px rgba(20, 46, 77, 0.2),
-        inset -1px 1px 3px rgba(20, 46, 77, 0.15)
+        0 6px 16px rgba(20, 46, 77, 0.35),
+        inset 0 1px 2px rgba(255,255,255,0.6)
       `}
-      border="2px solid"
-      borderColor="rgba(20, 46, 77, 0.5)"
       position="relative"
+      overflow="hidden"
     >
-      {/* Wax seal highlight for 3D effect */}
       <Center
-        position="absolute"
-        top="8%"
-        left="30%"
-        w="25%"
-        h="25%"
-        bgGradient="radial(circle at center, rgba(255,255,255,0.8), transparent)"
+        w="100%"
+        h="100%"
         borderRadius="full"
-        pointerEvents="none"
-      />
-
-      <Text
-        fontFamily={weddingTheme.fonts.display}
-        fontSize={size === '48px' ? '15px' : '13px'}
-        color={envelopeTheme.exterior}
-        fontWeight="700"
-        letterSpacing="2px"
-        userSelect="none"
-        textShadow={`
-          0 1px 2px rgba(255,255,255,0.3),
-          0 -1px 1px rgba(0,0,0,0.2)
-        `}
+        overflow="hidden"
+        bg={weddingTheme.colors.backgroundMuted}
       >
-        A&amp;K
-      </Text>
+        <Image
+          src={waxSeal}
+          alt="Wax seal"
+          width="100%"
+          height="100%"
+          objectFit="contain"
+          borderRadius="full"
+          loading="eager"
+          pointerEvents="none"
+          style={{
+            imageRendering: 'auto',
+            transform: 'translateZ(0)',
+            willChange: 'transform',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+          }}
+        />
+      </Center>
     </Center>
   )
 }
