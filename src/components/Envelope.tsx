@@ -4,6 +4,7 @@ import { useEffect, useRef, type ReactNode } from 'react'
 import { EnvelopeBack } from './envelope/EnvelopeBack'
 import { EnvelopeFrontOpen } from './envelope/EnvelopeFrontOpen'
 import { EnvelopeFrontSealed } from './envelope/EnvelopeFrontSealed'
+import weddingMusic from '../lib/sounds/damiano_the_first_time.mp3'
 import {
   ENVELOPE_HEIGHT,
   ENVELOPE_WIDTH,
@@ -52,6 +53,8 @@ export function Envelope() {
   } = useEnvelopeState()
 
   const openTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const musicRef = useRef<HTMLAudioElement | null>(null)
+  const musicStartedRef = useRef(false)
   const phaseRef = useRef(phase)
   phaseRef.current = phase
 
@@ -62,6 +65,18 @@ export function Envelope() {
       }
     }
   }, [])
+
+  const startMusic = () => {
+    if (musicStartedRef.current) return
+
+    const music = musicRef.current
+    if (!music) return
+
+    musicStartedRef.current = true
+    void music.play().catch(() => {
+      musicStartedRef.current = false
+    })
+  }
 
   const handleFlipComplete = () => {
     if (phaseRef.current !== 'flipping') return
@@ -75,6 +90,11 @@ export function Envelope() {
   const showFlatBack = isBack
   const show3DFlip = isFlipping
   const showFlatFront = isFrontSealed || isOpening || isOpen
+
+  const handleInteract = () => {
+    startMusic()
+    interact()
+  }
 
   return (
     <Center
@@ -105,14 +125,14 @@ export function Envelope() {
             w="100%"
             h="100%"
             cursor="pointer"
-            onClick={interact}
+            onClick={handleInteract}
             role="button"
             tabIndex={0}
             aria-label="Turn over wedding invitation envelope"
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault()
-                interact()
+                handleInteract()
               }
             }}
           >
@@ -185,11 +205,12 @@ export function Envelope() {
               pointerEvents="none"
               textShadow="0 1px 2px rgba(24, 56, 96, 0.22)"
             >
-              Πατήστε για Ανοιγμα
+              Πατήστε το φάκελο για άνοιγμα
             </Text>
           </Box>
         )}
       </Box>
+      <audio ref={musicRef} src={weddingMusic} loop preload="auto" aria-hidden="true" />
     </Center>
   )
 }

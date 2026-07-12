@@ -65,7 +65,7 @@ export function InvitationCard({
             pointerEvents="none"
             textShadow="0 1px 2px rgba(24, 56, 96, 0.22)"
           >
-            Πατήστε την πρόσκληση για την ιστοσελίδα
+            Πατήστε την πρόσκληση για την ιστοσελίδα μας
           </Text>
         </Box>
       )}
