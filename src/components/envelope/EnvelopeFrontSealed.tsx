@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/react'
-import { EnvelopeStamp } from './EnvelopeStamp'
 import { WaxSeal } from './WaxSeal'
 import { envelopeTheme } from '../../lib/theme'
 import { paperStyle } from './paperStyle'
@@ -29,8 +28,6 @@ export function EnvelopeFrontSealed() {
         bgGradient="linear(to-b, rgba(0,0,0,0.08), rgba(0,0,0,0.02))"
         zIndex={0}
       />
-
-      <EnvelopeStamp />
 
       {/* Envelope pocket */}
       <Box
