@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { InvitationCard } from '../InvitationCard'
 import { RSVP_URL } from '../../lib'
 import { envelopeTheme } from '../../lib/theme'
@@ -19,6 +20,13 @@ export function EnvelopeFrontOpen({
   onOpenComplete,
 }: EnvelopeFrontOpenProps) {
   const showCard = isOpening || isOpen
+  const [isCardSettled, setIsCardSettled] = useState(false)
+
+  useEffect(() => {
+    if (!showCard || isOpening) {
+      setIsCardSettled(false)
+    }
+  }, [isOpening, showCard])
 
   return (
     <Box
@@ -50,12 +58,18 @@ export function EnvelopeFrontOpen({
           display="flex"
           justifyContent="center"
           alignItems="center"
-          initial={{ y: 28, scale: 0.9, opacity: 0 }}
-          animate={{ y: isOpen ? 0 : -56, scale: 1, opacity: 1 }}
+          style={{ transformOrigin: 'center center' }}
+          initial={{ y: 28, scale: 0.9, opacity: 0, rotate: -90 }}
+          animate={{ y: isOpen ? 0 : -56, scale: 1, opacity: 1, rotate: isOpen ? 0 : -90 }}
           transition={cardTransition}
+          onAnimationComplete={() => {
+            if (isOpen) {
+              setIsCardSettled(true)
+            }
+          }}
         >
           <InvitationCard
-            showRsvpHint={isOpen}
+            showRsvpHint={isOpen && isCardSettled}
             onRsvpClick={() => window.open(RSVP_URL, '_blank', 'noopener,noreferrer')}
           />
         </MotionBox>
