@@ -1,4 +1,4 @@
-import { Box, Image, Text } from '@chakra-ui/react'
+import { Box, Image, Text, type BoxProps } from '@chakra-ui/react'
 import { invitationImage02 } from '../lib'
 import { envelopeTheme, weddingTheme } from '../lib/theme'
 import { WeddingCountdown } from './WeddingCountdown'
@@ -6,19 +6,24 @@ import { WeddingCountdown } from './WeddingCountdown'
 type InvitationCardProps = {
   onRsvpClick: () => void
   showRsvpHint?: boolean
+  cardWidth?: BoxProps['w']
+  cardHeight?: BoxProps['h']
 }
 
 export function InvitationCard({
   onRsvpClick,
   showRsvpHint = false,
+  cardWidth,
+  cardHeight,
 }: InvitationCardProps) {
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap={4}>
       <Box
         as="button"
         onClick={onRsvpClick}
-        w={{ base: '385px', sm: '385px' }}
-        aspectRatio="5 / 7"
+        w={cardWidth ?? { base: '385px', sm: '385px' }}
+        h={cardHeight}
+        aspectRatio={cardHeight ? undefined : '5 / 7'}
         bg={weddingTheme.colors.background}
         borderRadius="4px"
         boxShadow={weddingTheme.colors.shadowStrong}
@@ -27,7 +32,7 @@ export function InvitationCard({
         borderColor={weddingTheme.colors.borderSubtle}
         cursor="pointer"
         p={0}
-        transition="transform 0.2s ease, box-shadow 0.2s ease"
+        transition="transform 0.2s ease, box-shadow 0.2s ease, width 0.35s ease, height 0.35s ease"
         _hover={{
           transform: 'scale(1.02)',
           boxShadow: '0 20px 56px rgba(20, 46, 77, 0.34)',

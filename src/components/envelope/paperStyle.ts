@@ -19,17 +19,18 @@ export const ENVELOPE_ASPECT_RATIO = 660 / 448
 const INVITATION_CARD_WIDTH = 385
 const INVITATION_CARD_HEIGHT = Math.round((INVITATION_CARD_WIDTH * 7) / 5)
 const ENVELOPE_TARGET_WIDTH = `${INVITATION_CARD_HEIGHT}px`
+const ENVELOPE_HEIGHT_SCALE = 1.1
 
 export const ENVELOPE_WIDTH = {
-  base: `min(94vw, ${ENVELOPE_TARGET_WIDTH})`,
-  sm: `min(90vw, ${ENVELOPE_TARGET_WIDTH})`,
+  base: `min(90vw, ${ENVELOPE_TARGET_WIDTH})`,
+  sm: `min(86vw, ${ENVELOPE_TARGET_WIDTH})`,
   md: `min(86vw, ${ENVELOPE_TARGET_WIDTH})`,
 }
 
 export const ENVELOPE_HEIGHT = {
-  base: `calc(min(94vw, ${ENVELOPE_TARGET_WIDTH}) / ${ENVELOPE_ASPECT_RATIO})`,
-  sm: `calc(min(90vw, ${ENVELOPE_TARGET_WIDTH}) / ${ENVELOPE_ASPECT_RATIO})`,
-  md: `calc(min(86vw, ${ENVELOPE_TARGET_WIDTH}) / ${ENVELOPE_ASPECT_RATIO})`,
+  base: `calc((min(90vw, ${ENVELOPE_TARGET_WIDTH}) / ${ENVELOPE_ASPECT_RATIO}) * ${ENVELOPE_HEIGHT_SCALE})`,
+  sm: `calc((min(86vw, ${ENVELOPE_TARGET_WIDTH}) / ${ENVELOPE_ASPECT_RATIO}) * ${ENVELOPE_HEIGHT_SCALE})`,
+  md: `calc((min(86vw, ${ENVELOPE_TARGET_WIDTH}) / ${ENVELOPE_ASPECT_RATIO}) * ${ENVELOPE_HEIGHT_SCALE})`,
 }
 
 // Enhanced flip transition with smoother easing curve
