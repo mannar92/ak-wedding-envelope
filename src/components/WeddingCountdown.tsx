@@ -96,7 +96,7 @@ export function WeddingCountdown() {
           fontSize={weddingTheme.fontSizes.body}
           color={envelopeTheme.exterior}
         >
-          The wedding day is here.
+          Έφτασε η μέρα του γάμου!
         </Text>
       ) : (
         <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
