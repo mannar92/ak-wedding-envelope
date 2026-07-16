@@ -14,6 +14,7 @@ import { envelopeTheme, weddingTheme } from '../lib/theme'
 import { useEnvelopeState } from '../hooks/useEnvelopeState'
 
 const MotionBox = motion.create(Box)
+const MUSIC_VOLUME = 0.2
 
 function FlipFace({
   children,
@@ -63,6 +64,12 @@ export function Envelope() {
       if (openTimerRef.current) {
         clearTimeout(openTimerRef.current)
       }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (musicRef.current) {
+      musicRef.current.volume = MUSIC_VOLUME
     }
   }, [])
 
