@@ -19,6 +19,7 @@ export function EnvelopeFrontOpen({
   isOpen,
   onOpenComplete,
 }: EnvelopeFrontOpenProps) {
+  const seamColor = 'rgba(20, 46, 77, 0.18)'
   const showCard = isOpening || isOpen
   const [isCardSettled, setIsCardSettled] = useState(false)
   const [isCardInFront, setIsCardInFront] = useState(false)
@@ -84,13 +85,8 @@ export function EnvelopeFrontOpen({
         position="absolute"
         inset={0}
         borderRadius="3px"
-        boxShadow={`
-          ${envelopeTheme.shadow},
-          inset 0 2px 4px rgba(0,0,0,0.1)
-        `}
         overflow="hidden"
-        bg={envelopeTheme.liner}
-        backgroundImage="repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0 2px, transparent 2px 4px), radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%)"
+        bg={envelopeTheme.exteriorLight}
       />
 
       {/* Invitation card with smooth reveal */}
@@ -168,37 +164,13 @@ export function EnvelopeFrontOpen({
         h="62%"
         zIndex={8}
         clipPath="polygon(0 100%, 0 12%, 50% 58%, 100% 12%, 100% 100%)"
-        {...paperStyle(envelopeTheme.pocket)}
-        boxShadow={`
-          inset 0 8px 16px ${envelopeTheme.pocketShadow},
-          inset 0 2px 4px rgba(0,0,0,0.12),
-          inset 0 -1px 2px rgba(0,0,0,0.05)
+        {...paperStyle(envelopeTheme.exterior)}
+        backgroundImage={`
+          linear-gradient(33deg, transparent calc(50% - 0.75px), ${seamColor} 50%, transparent calc(50% + 0.75px)),
+          linear-gradient(-33deg, transparent calc(50% - 0.75px), ${seamColor} 50%, transparent calc(50% + 0.75px))
         `}
+        backgroundRepeat="no-repeat"
         borderBottomRadius="3px"
-      />
-
-      {/* Left pocket edge with shadow */}
-      <Box
-        position="absolute"
-        bottom={0}
-        left={0}
-        w="50%"
-        h="55%"
-        zIndex={9}
-        clipPath="polygon(0 100%, 0 0, 100% 55%)"
-        bgGradient="linear(to-r, rgba(0,0,0,0.15), transparent 80%)"
-      />
-
-      {/* Right pocket edge with shadow */}
-      <Box
-        position="absolute"
-        bottom={0}
-        right={0}
-        w="50%"
-        h="55%"
-        zIndex={9}
-        clipPath="polygon(100% 100%, 100% 0, 0 55%)"
-        bgGradient="linear(to-l, rgba(0,0,0,0.15), transparent 80%)"
       />
 
       {/* Animated envelope flap with enhanced 3D */}
@@ -228,10 +200,11 @@ export function EnvelopeFrontOpen({
           h="100%"
           clipPath="polygon(0 0, 100% 0, 50% 100%)"
           {...paperStyle(envelopeTheme.exteriorLight)}
-          boxShadow={`
-            inset 0 -3px 10px rgba(20, 46, 77, 0.18),
-            inset 0 1px 2px rgba(255,255,255,0.25)
+          backgroundImage={`
+            linear-gradient(147deg, transparent calc(50% - 0.75px), ${seamColor} 50%, transparent calc(50% + 0.75px)),
+            linear-gradient(-147deg, transparent calc(50% - 0.75px), ${seamColor} 50%, transparent calc(50% + 0.75px))
           `}
+          backgroundRepeat="no-repeat"
         />
       </MotionBox>
     </Box>

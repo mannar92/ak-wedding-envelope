@@ -3,12 +3,7 @@ import type { BoxProps } from '@chakra-ui/react'
 export function paperStyle(color: string): Pick<BoxProps, 'bg' | 'backgroundImage'> {
   return {
     bg: color,
-    backgroundImage: `
-      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15) 0%, transparent 45%),
-      radial-gradient(circle at 80% 80%, rgba(0,0,0,0.12) 0%, transparent 40%),
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 4px),
-      repeating-linear-gradient(-45deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 1px, transparent 1px, transparent 2px)
-    `,
+    backgroundImage: 'none',
   }
 }
 

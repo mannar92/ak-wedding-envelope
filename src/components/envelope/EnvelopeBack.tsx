@@ -9,11 +9,6 @@ export function EnvelopeBack() {
       w="100%"
       h="100%"
       borderRadius="3px"
-      boxShadow={`
-        ${envelopeTheme.shadow},
-        inset 0 1px 2px rgba(255,255,255,0.4),
-        inset 0 -1px 2px rgba(0,0,0,0.1)
-      `}
       overflow="hidden"
       {...paperStyle(envelopeTheme.exterior)}
     >
