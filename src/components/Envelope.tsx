@@ -220,6 +220,8 @@ export function Envelope() {
         )}
       </Box>
       <audio ref={musicRef} src={weddingMusic} loop preload="auto" aria-hidden="true" />
+
+      {/* Phase B debug stepper was here; keep the component in src/components/debug/EnvelopeDebugStepper.tsx for future reuse. */}
     </Center>
   )
 }

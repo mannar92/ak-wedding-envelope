@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { InvitationCard } from '../InvitationCard'
 import { RSVP_URL } from '../../lib'
 import { envelopeTheme } from '../../lib/theme'
@@ -19,7 +19,7 @@ export function EnvelopeFrontOpen({
   isOpen,
   onOpenComplete,
 }: EnvelopeFrontOpenProps) {
-  const seamColor = 'rgba(20, 46, 77, 0.18)'
+  const sideShadowFilterId = useId()
   const showCard = isOpening || isOpen
   const [isCardSettled, setIsCardSettled] = useState(false)
   const [isCardInFront, setIsCardInFront] = useState(false)
@@ -165,11 +165,6 @@ export function EnvelopeFrontOpen({
         zIndex={8}
         clipPath="polygon(0 100%, 0 12%, 50% 58%, 100% 12%, 100% 100%)"
         {...paperStyle(envelopeTheme.exterior)}
-        backgroundImage={`
-          linear-gradient(33deg, transparent calc(50% - 0.75px), ${seamColor} 50%, transparent calc(50% + 0.75px)),
-          linear-gradient(-33deg, transparent calc(50% - 0.75px), ${seamColor} 50%, transparent calc(50% + 0.75px))
-        `}
-        backgroundRepeat="no-repeat"
         borderBottomRadius="3px"
       />
 
@@ -195,17 +190,32 @@ export function EnvelopeFrontOpen({
         }}
       >
         {/* Flap exterior */}
-        <Box
-          w="100%"
-          h="100%"
-          clipPath="polygon(0 0, 100% 0, 50% 100%)"
-          {...paperStyle(envelopeTheme.exteriorLight)}
-          backgroundImage={`
-            linear-gradient(147deg, transparent calc(50% - 0.75px), ${seamColor} 50%, transparent calc(50% + 0.75px)),
-            linear-gradient(-147deg, transparent calc(50% - 0.75px), ${seamColor} 50%, transparent calc(50% + 0.75px))
-          `}
-          backgroundRepeat="no-repeat"
-        />
+        <svg
+          viewBox="0 0 100 54"
+          preserveAspectRatio="none"
+          style={{ width: '100%', height: '100%' }}
+          aria-hidden="true"
+        >
+          <defs>
+            <filter id={sideShadowFilterId} x="-25%" y="-20%" width="150%" height="170%">
+              <feGaussianBlur stdDeviation="0.45" />
+            </filter>
+          </defs>
+
+          <polygon points="0,0 100,0 50,54" fill={envelopeTheme.exterior} />
+
+          <polygon
+            points="0,0 2.4,0 50,54 48.8,54 0,2.4"
+            fill="rgba(20, 46, 77, 0.22)"
+            filter={`url(#${sideShadowFilterId})`}
+          />
+
+          <polygon
+            points="97.6,0 100,0 100,2.4 51.2,54 50,54"
+            fill="rgba(20, 46, 77, 0.22)"
+            filter={`url(#${sideShadowFilterId})`}
+          />
+        </svg>
       </MotionBox>
     </Box>
   )
