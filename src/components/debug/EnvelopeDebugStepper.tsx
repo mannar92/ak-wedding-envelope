@@ -46,20 +46,20 @@ export function EnvelopeDebugStepper({
         Current: {phase}
       </Text>
 
-      <HStack spacing={2} mb={3}>
-        <Button size="xs" onClick={stepPrev} isDisabled={currentIndex <= 0}>
+      <HStack gap={2} mb={3}>
+        <Button size="xs" onClick={stepPrev} disabled={currentIndex <= 0}>
           Prev
         </Button>
         <Button
           size="xs"
           onClick={stepNext}
-          isDisabled={currentIndex < 0 || currentIndex >= phases.length - 1}
+          disabled={currentIndex < 0 || currentIndex >= phases.length - 1}
         >
           Next
         </Button>
       </HStack>
 
-      <Wrap spacing={2}>
+      <Wrap gap={2}>
         {phases.map((value) => (
           <Button
             key={value}
