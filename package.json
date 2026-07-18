@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview:worker": "npm run build && wrangler dev",
-    "deploy:worker": "npm run build && wrangler deploy"
+    "deploy:worker": "npm run build && wrangler deploy",
+    "preview:worker:wax-seal": "wrangler dev -c wrangler.wax-seal.toml",
+    "deploy:worker:wax-seal": "wrangler deploy -c wrangler.wax-seal.toml"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.36.0",

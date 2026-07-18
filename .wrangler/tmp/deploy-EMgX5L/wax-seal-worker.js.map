@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": ["../../../wax-seal-worker.ts"],
+  "sourceRoot": "C:\\Users\\alexm\\dev\\playground\\personal\\ak-wedding-envelope\\.wrangler\\tmp\\deploy-EMgX5L",
+  "sourcesContent": ["export default {\r\n  async fetch(request: Request, env: { ASSETS: Fetcher }): Promise<Response> {\r\n    const url = new URL(request.url)\r\n\r\n    if (url.pathname !== '/wax_seal.png') {\r\n      return new Response('Not Found', { status: 404 })\r\n    }\r\n\r\n    const assetRequest = new Request(new URL('/wax_seal.png', url.origin).toString(), request)\r\n    const assetResponse = await env.ASSETS.fetch(assetRequest)\r\n\r\n    if (!assetResponse.ok) {\r\n      return new Response('Not Found', { status: 404 })\r\n    }\r\n\r\n    const headers = new Headers(assetResponse.headers)\r\n    headers.set('Content-Type', 'image/png')\r\n    headers.set('Cache-Control', 'public, max-age=31536000, immutable')\r\n\r\n    return new Response(assetResponse.body, {\r\n      status: 200,\r\n      headers,\r\n    })\r\n  },\r\n}\r\n"],
+  "mappings": ";AAAA,IAAO,0BAAQ;AAAA,EACb,MAAM,MAAM,SAAkB,KAA6C;AACzE,UAAM,MAAM,IAAI,IAAI,QAAQ,GAAG;AAE/B,QAAI,IAAI,aAAa,iBAAiB;AACpC,aAAO,IAAI,SAAS,aAAa,EAAE,QAAQ,IAAI,CAAC;AAAA,IAClD;AAEA,UAAM,eAAe,IAAI,QAAQ,IAAI,IAAI,iBAAiB,IAAI,MAAM,EAAE,SAAS,GAAG,OAAO;AACzF,UAAM,gBAAgB,MAAM,IAAI,OAAO,MAAM,YAAY;AAEzD,QAAI,CAAC,cAAc,IAAI;AACrB,aAAO,IAAI,SAAS,aAAa,EAAE,QAAQ,IAAI,CAAC;AAAA,IAClD;AAEA,UAAM,UAAU,IAAI,QAAQ,cAAc,OAAO;AACjD,YAAQ,IAAI,gBAAgB,WAAW;AACvC,YAAQ,IAAI,iBAAiB,qCAAqC;AAElE,WAAO,IAAI,SAAS,cAAc,MAAM;AAAA,MACtC,QAAQ;AAAA,MACR;AAAA,IACF,CAAC;AAAA,EACH;AACF;",
+  "names": []
+}

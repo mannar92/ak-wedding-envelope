@@ -1,0 +1,4 @@
+name = "alexandroskaterina2026-wax-seal"
+compatibility_date = "2026-07-10"
+main = "wax-seal-worker.ts"
+assets = { directory = "public", binding = "ASSETS" }
